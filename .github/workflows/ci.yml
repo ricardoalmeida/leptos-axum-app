@@ -19,5 +19,7 @@ jobs:
         run: cargo build --verbose
       - name: Run tests
         run: cargo test --verbose
+      - name: Install cargo-leptos
+        run: cargo install cargo-leptos
       - name: Run e2e tests
         run: cargo leptos end-to-end
