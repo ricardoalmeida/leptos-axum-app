@@ -14,3 +14,4 @@ Cargo.lock
 *.pdb
 
 end2end/node_modules
+end2end/playwright-report
