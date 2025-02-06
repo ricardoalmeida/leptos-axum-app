@@ -20,3 +20,23 @@ jobs:
         run: cargo build --verbose
       - name: Run tests
         run: cargo test --verbose
+
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install Leptos CLI
+        run: cargo install leptos-cli
+        
+      - name: Install dependencies
+        run: cd end2end && npm install
+        
+      - name: Run end-to-end tests
+        run: cargo leptos end-to-end
