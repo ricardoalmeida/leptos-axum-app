@@ -1,4 +1,6 @@
 
+use leptos::logging::log;
+
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
