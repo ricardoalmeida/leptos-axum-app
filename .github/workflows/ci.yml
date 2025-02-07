@@ -33,7 +33,7 @@ jobs:
           node-version: '18'
           
       - name: Install Leptos CLI
-        run: cargo install cargo-leptos@^0.7
+        run: cargo install cargo-leptos@^0.2
       - name: Install dependencies
         run: cd end2end && npm install
         
