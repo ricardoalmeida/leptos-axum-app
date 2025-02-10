@@ -51,7 +51,7 @@ jobs:
           cache-dependency-path: end2end/package-lock.json
 
       - name: Cache global npm packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm-global
           key: ${{ runner.os }}-npm-global-sass
