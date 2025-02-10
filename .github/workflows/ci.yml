@@ -80,15 +80,7 @@ jobs:
       - name: Install dependencies
         run: cd end2end && npm install
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v3
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('end2end/package-lock.json') }}
-
       - name: Install Playwright Browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: cd end2end && npx playwright install --with-deps
 
       - name: Run end-to-end tests
