@@ -15,7 +15,6 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,19 +29,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@nightly
         with:
           targets: wasm32-unknown-unknown
-          
+
       - uses: Swatinem/rust-cache@v2
         with:
-          cache-directories: |
-            ~/.cargo/bin
-            ~/.cargo/registry
-            ~/.cargo/git
-            
+          shared-key: "leptos-axum-e2e"
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -55,26 +52,27 @@ jobs:
         with:
           path: ~/.npm-global
           key: ${{ runner.os }}-npm-global-sass
-          
+
       - name: Configure npm global path
         run: |
           mkdir -p ~/.npm-global
           npm config set prefix '~/.npm-global'
           echo "~/.npm-global/bin" >> $GITHUB_PATH
-          
+
       - name: Install Sass
         run: npm install -g sass
-          
+
       - name: Install Cargo Generate
         run: cargo install cargo-generate --locked
-          
+
       - name: Install Cargo Leptos
         run: cargo install cargo-leptos@^0.2 --locked
+
       - name: Install dependencies
         run: cd end2end && npm install
-        
+
       - name: Install Playwright Browsers
         run: cd end2end && npx playwright install --with-deps
-        
+
       - name: Run end-to-end tests
         run: cargo leptos end-to-end
