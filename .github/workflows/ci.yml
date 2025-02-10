@@ -39,15 +39,6 @@ jobs:
         with:
           shared-key: "leptos-axum-e2e"
           save-if: ${{ github.ref == 'refs/heads/main' }}
-          cache-directories: |
-            ~/.cargo/bin/cargo-generate
-            ~/.cargo/bin/cargo-leptos
-            ~/.cargo/.crates.toml
-            ~/.cargo/.crates2.json
-            ~/.cargo/registry/index
-            ~/.cargo/registry/cache
-            ~/.cargo/git/db
-            target/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
