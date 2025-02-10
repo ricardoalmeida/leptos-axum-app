@@ -1,6 +1,3 @@
-
-use leptos::logging::log;
-
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
@@ -8,6 +5,7 @@ async fn main() {
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use leptos_axum_app::app::*;
+    use leptos::logging::log;
 
     let conf = get_configuration(None).unwrap();
     let addr = conf.leptos_options.site_addr;
